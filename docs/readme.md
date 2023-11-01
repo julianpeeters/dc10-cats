@@ -1,4 +1,4 @@
-# dc10-cats-effect
+# dc10-cats
 Library for use with the `dc10-scala` code generator
 
 ### Getting Started
