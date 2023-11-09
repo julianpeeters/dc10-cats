@@ -7,26 +7,8 @@ import cats.free.Cofree
 import dc10.scala.{Error, ErrorF, Statement}
 import dc10.scala.Statement.{TypeExpr, ValueExpr}
 import dc10.scala.Symbol.Term
-import org.tpolecat.sourcepos.SourcePos
-import dc10.scala.Symbol.Term.ValueLevel.App.App1
-import dc10.scala.Symbol.Term.ValueLevel.App.AppCtor1
-import dc10.scala.Symbol.Term.ValueLevel.App.AppPure
-import dc10.scala.Symbol.Term.ValueLevel.App.AppVargs
-import dc10.scala.Symbol.Term.ValueLevel.App.Dot1
 import dc10.scala.dsl.==>
-
-import dc10.scala.Symbol.Term.ValueLevel.Var.Println
-import dc10.scala.Symbol.Term.ValueLevel.Var.UserDefinedValue
-import dc10.scala.Symbol.Term.TypeLevel.App1
-import dc10.scala.Symbol.Term.TypeLevel.App2
-import dc10.scala.Symbol.Term.TypeLevel.App3
-
-import dc10.scala.Symbol.Term.TypeLevel.Var.Function1Type
-
-import dc10.scala.Symbol.Term.TypeLevel.Var.OptionType
-import dc10.scala.Symbol.Term.TypeLevel.Var.OptionType.SomeType
-import dc10.scala.Symbol.Term.TypeLevel.Var.UserDefinedType
-
+import org.tpolecat.sourcepos.SourcePos
 
 trait Functor[F[_], G[_]]:
   extension [A, X] (fa: F[ValueExpr[Unit, G[A]]])
