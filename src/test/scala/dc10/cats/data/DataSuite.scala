@@ -1,7 +1,6 @@
 package dc10.cats.data
 
-// import dc10.cats.dsl.*
-import dc10.cats.data.dsl.{*}
+import dc10.cats.data.dsl.*
 import dc10.scala.compiler.{compile, toString}
 import dc10.scala.dsl.{*, given}
 import dc10.scala.version.`3.3.1`
