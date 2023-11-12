@@ -1,4 +1,4 @@
-val Dc10ScalaV = "0.5.0+7-d5b19df5+20231109-1603-SNAPSHOT"
+val Dc10ScalaV = "0.6.0"
 val MUnitV = "0.7.29"
 
 inThisBuild(List(
