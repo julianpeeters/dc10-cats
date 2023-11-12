@@ -5,7 +5,7 @@ Library for use with the `dc10-scala` code generator
  - Library for Scala 3 (JVM only)
 
 ```scala
-"com.julianpeeters" %% "dc10-cats" % "0.1.0"
+"com.julianpeeters" %% "dc10-cats" % "0.2.0"
 ```
 
 ### Usage
@@ -22,7 +22,7 @@ val snippet =
     _ <- VAL("msg", OPTION(STRING), Option(0).AS("Hello, World!"))
     _ <- VAL("num", OPTION(INT), Option(0).MAP(VAL("i", INT) ==> (i => i)))
   yield ()
-// snippet: IndexedStateT[ErrorF, List[Statement], List[Statement], Unit] = cats.data.IndexedStateT@3f42261b
+// snippet: IndexedStateT[ErrorF, List[Statement], List[Statement], Unit] = cats.data.IndexedStateT@1aa25fda
 ```
 
 Use the compiler in `dc10-scala` to render code `toString` or `toVirtualFile`:
