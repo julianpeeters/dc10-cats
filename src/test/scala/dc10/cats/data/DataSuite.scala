@@ -10,7 +10,7 @@ import munit.FunSuite
 
 class DataSuite extends FunSuite:
 
-  test("functor"):
+  test("store"):
 
     def ast =
       for
