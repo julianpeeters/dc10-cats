@@ -22,7 +22,7 @@ val snippet =
     _ <- VAL("msg", OPTION(STRING), Option(0).AS("Hello, World!"))
     _ <- VAL("num", OPTION(INT), Option(0).MAP(VAL("i", INT) ==> (i => i)))
   yield ()
-// snippet: IndexedStateT[ErrorF, List[Statement], List[Statement], Unit] = cats.data.IndexedStateT@3963454d
+// snippet: IndexedStateT[ErrorF, List[Statement], List[Statement], Unit] = cats.data.IndexedStateT@6dc7b656
 ```
 
 Use the compiler in `dc10-scala` to render code `toString` or `toVirtualFile`:
@@ -32,7 +32,6 @@ import dc10.scala.compiler.{compile, toString}
 import dc10.scala.version.`3.4.0`
 
 val result: String = snippet.compile.toString["scala-3.4.0"]
-// Infix(None,Function1Type(None,UnitLiteral(None,UnitType(None),())),IntType(None,UnitLiteral(None,UnitType(None),())),IntType(None,UnitLiteral(None,UnitType(None),())),UnitLiteral(None,UnitType(None),()))
 // result: String = """val msg: Option[String] = Option(0).as("Hello, World!")
 // val num: Option[Int] = Option(0).map(i => i)"""
 ```
