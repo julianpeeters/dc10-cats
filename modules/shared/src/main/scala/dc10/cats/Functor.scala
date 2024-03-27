@@ -24,7 +24,6 @@ object Functor:
           f <- o.value match
             case Term.ValueLevel.App.AppPure(qnt, fun, arg, tpe) =>
               for
-                // t <- StateT.pure[ErrorF, List[Statement], Term.TypeLevel[Option[B], (Unit, Z)]](Term.TypeLevel.App.App1(None, Term.TypeLevel.Var.SomeType(None, tpe.dep), v.value.tpe, Term.ValueLevel.Var.UnitLiteral(None, Term.TypeLevel.Var.UnitType(None), ())))
                 t <- StateT.pure[ErrorF, List[Statement], Term.TypeLevel[Option[B], (Unit, Z)]](Term.TypeLevel.App.App1(None, Term.TypeLevel.Var.SomeType(None, tpe.dep), v.value.tpe,
                   Term.ValueLevel.App.AppCtor2(None, "",
                       Term.TypeLevel.App.App2(
@@ -93,7 +92,6 @@ object Functor:
           v <- f
           h <- o.value match
             case Term.ValueLevel.App.AppPure(qnt, fun, arg, tpe) =>
-              println(v.value.tpe)
               for
                 t <- StateT.liftF[ErrorF, List[Statement], TypeExpr[Option[B], (Unit, Z)]](v.value.tpe match
                   case Term.TypeLevel.App.Infix(qnt, tfun, ta, tb, dep) => Right(TypeExpr(Term.TypeLevel.App.App1(None, Term.TypeLevel.Var.OptionType(None, dep), tb, Term.ValueLevel.App.AppCtor2(None, "",
@@ -109,7 +107,6 @@ object Functor:
                     )
                   )))
                   case _ =>
-                    println("WEWE")
                     Left(List(Error(s"${sp.file}:${sp.line}\nValue is not a Functor")))
                 )
                 g <- f ==> ((s: ValueExpr[A => B, Z]) => StateT.pure(ValueExpr[Option[B], (Unit, Z)](
@@ -118,7 +115,6 @@ object Functor:
                   ValueExpr(Term.ValueLevel.Var.UserDefinedValue[(A => B) => Option[B], (Unit, Z)](None, "map", g.value.tpe.manageDep( _ => t.tpe.dep), None)))
               yield (t, v)
             case _ => StateT.liftF[ErrorF, List[Statement], (TypeExpr[Option[B], (Unit, Z)],ValueExpr[(A => B) => Option[B], (Unit, Z)])](Left(List(Error(s"${sp.file}:${sp.line}\nValue in not a Functor")))) 
-        // yield ValueExpr(Term.ValueLevel.App.Dot1(None, h._2.value, o.value.manageDep(_ => h._1.tpe.dep), v.value.manageDep(_ => h._1.tpe.dep), h._1.tpe))
         yield ValueExpr(Term.ValueLevel.App.Dot1(
           None, 
           h._2.value,
