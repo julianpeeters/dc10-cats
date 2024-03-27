@@ -1,4 +1,5 @@
-val Dc10ScalaV = "0.6.0"
+val CatsV = "2.10.0"
+val Dc10ScalaV = "0.7.1"
 val MUnitV = "0.7.29"
 
 inThisBuild(List(
@@ -23,29 +24,33 @@ inThisBuild(List(
     "-Wunused:all",
     "-Wvalue-discard"
   ),
-  scalaVersion := "3.4.0-RC1-bin-20231025-8046a8b-NIGHTLY",
+  scalaVersion := "3.4.0",
   versionScheme := Some("semver-spec"),
 ))
 
-lazy val `dc10-cats` = (project in file("."))
+lazy val `dc10-cats` = crossProject(JSPlatform, JVMPlatform, NativePlatform)
+  .in(file("modules"))
   .settings(
     name := "dc10-cats",
     libraryDependencies ++= Seq(
       // main
-      "com.julianpeeters" %% "dc10-scala" % Dc10ScalaV,
+      "com.julianpeeters" %%% "dc10-scala" % Dc10ScalaV,
+      "org.typelevel"     %%% "cats-core"  % CatsV,
       // test
-      "org.scalameta" %% "munit" % MUnitV % Test
+      "org.scalameta"      %% "munit"      % MUnitV      % Test
     )
   )
+  .jsSettings(test := {})
+  .nativeSettings(test := {})
 
 lazy val docs = project.in(file("docs/gitignored"))
   .settings(
-    mdocOut := `dc10-cats`.base,
+    mdocOut := file("."),
     mdocVariables := Map(
       "SCALA" -> crossScalaVersions.value.map(e => e.takeWhile(_ != '.')).mkString(", "),
       "VERSION" -> version.value.takeWhile(_ != '+'),
     )
   )
-  .dependsOn(`dc10-cats`)
+  .dependsOn(`dc10-cats`.jvm)
   .enablePlugins(MdocPlugin)
   .enablePlugins(NoPublishPlugin)
