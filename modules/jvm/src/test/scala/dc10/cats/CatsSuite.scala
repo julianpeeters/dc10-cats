@@ -1,9 +1,8 @@
-package dc10.cats
 
 import dc10.cats.dsl.*
 import dc10.scala.compiler.{compile, toString}
 import dc10.scala.dsl.{*, given}
-import dc10.scala.version.`3.3.1`
+import dc10.scala.version.`3.4.0`
 import scala.language.implicitConversions
 
 import munit.FunSuite
@@ -19,7 +18,7 @@ class CatsSuite extends FunSuite:
       yield ()
     
     val obtained: String =
-      ast.compile.toString["scala-3.3.1"]
+      ast.compile.toString["scala-3.4.0"]
       
     val expected: String =
       """|val msg: Option[String] = Option(0).as("Howdy!")
